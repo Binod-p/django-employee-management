@@ -27,7 +27,7 @@ SECRET_KEY = 'gjcx=(fh=y$8o*#7=$*nnojvm2-#f0qbx8rkw5s166(6^9bq=v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-USE_SERVER_DB = False
+USE_SERVER_DB = True
 
 ALLOWED_HOSTS = []
 
