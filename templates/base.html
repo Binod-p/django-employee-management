@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Office Utilities {% block title %}{% endblock %}</title>
+    <link href="{% static 'base/css/theme-style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'base/css/pace-theme.css' %}" rel="stylesheet"/>
+    {% block css %}
+
+    {% endblock %}
+    <style>
+        html {
+            font-size: 0.9rem !important;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+            crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'home' %}"><span class="font-italic text-warning">Office</span> Utilities</a>
+    <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i>
+    </button>
+    <!-- Navbar Search-->
+    {#    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">#}
+    {#        <div class="input-group">#}
+    {#            <input class="form-control" type="text" placeholder="Search for..." aria-label="Search"#}
+    {#                   aria-describedby="basic-addon2"/>#}
+    {#            <div class="input-group-append">#}
+    {#                <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </form>#}
+    <!-- Navbar-->
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" target="_blank" id="userDropdown"
+               href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fab fa-github"></i></a>
+            {#            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">#}
+            {#                <a class="dropdown-item" href="#">Settings</a>#}
+            {#            </div>#}
+        </li>
+    </ul>
+</nav>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">Dashboard</div>
+                    <a class="nav-link" href="{% url 'home' %}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Home
+                    </a>
+                    <div class="sb-sidenav-menu-heading">Tools</div>
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseLayouts"
+                       aria-expanded="true" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Utilities
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse show" id="collapseLayouts" aria-labelledby="headingOne"
+                         data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="{% url 'employee-bulk-import' %}"><i class="fa fa-upload mr-2" aria-hidden="true"></i>Import Employee Data</a>
+                        </nav>
+                    </div>
+                    {#                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"#}
+                    {#                       aria-expanded="false" aria-controls="collapsePages">#}
+                    {#                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>#}
+                    {#                        Extras#}
+                    {#                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>#}
+                    {#                    </a>#}
+                    {#                    <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"#}
+                    {#                         data-parent="#sidenavAccordion">#}
+                    {#                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">#}
+                    {#                            <a class="nav-link" href="#">Placeholder</a>#}
+                    {#                        </nav>#}
+                    {#                    </div>#}
+                </div>
+            </div>
+            <div class="sb-sidenav-footer"></div>
+        </nav>
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid">
+                <div class="row my-3">
+                    <div class="col"><h1 class="float-left">{% block page-heading %}{% endblock %}</h1></div>
+                    <div class="col-auto my-auto">{% block extra-content %}{% endblock %}</div>
+                </div>
+
+                <div class="content">
+                    {% block content %}
+
+                    {% endblock %}
+                </div>
+            </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Mohit Devda</div>
+                    <div></div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<script type="text/javascript" src="{% static 'base/js/pace.min.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="{% static 'base/js/script.js' %}"></script>
+
+<! -- CSRF TOKEN -->
+<script type="text/javascript">
+    function getToken(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getToken('csrftoken');
+</script>
+<! -- CSRF TOKEN -->
+
+{% block javascript %}
+
+{% endblock %}
+</body>
+</html>

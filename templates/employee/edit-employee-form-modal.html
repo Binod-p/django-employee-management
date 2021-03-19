@@ -1,0 +1,19 @@
+{% extends 'employee/base-form-modal.html' %}
+
+{% block modal_id %}editEmployeeModalForm{% endblock %}
+
+{% block modal-title %}Edit Employee Details{% endblock %}
+
+{% block form_id %}edit-employee-form{% endblock %}
+
+{% block form %}
+    {{ block.super }}
+{% endblock %}
+
+{% block employee_id_wrapper %}
+    {% with updateEmployee=True %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock employee_id_wrapper %}
+
+{% block submit-button-name %}Update{% endblock %}

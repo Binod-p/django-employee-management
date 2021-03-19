@@ -1,0 +1,88 @@
+<!-- Modal -->
+<div class="modal fade" id="{% block modal_id %}{% endblock modal_id %}" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header text-center py-2">
+                <h3 class="modal-title w-100 my-2">
+                    <strong>
+                        {% block modal-title %}{% endblock %}
+                    </strong>
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body mx-4 mt-2">
+                {% block form %}
+                    <form id="{% block form_id %}{% endblock form_id %}">
+                        {% block employee_id_wrapper %}
+                            {% if updateEmployee %}
+                                <div class="mb-3 pb-2 h5">Employee ID - <span id="static-employee-id"></span></div>
+                            {% endif %}
+                        {% endblock employee_id_wrapper %}
+
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><strong>First Name</strong></span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="First Name"
+                                   name="first_name" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><strong>Last Name</strong></span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Last Name"
+                                   name="last_name" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><strong>Department</strong></span>
+                            </div>
+                            <select class="form-control department-selector" name="department" aria-label="Department" required></select>
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><strong>Designation</strong></span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Designation"
+                                   name="designation" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><strong>Salary</strong></span>
+                                <span class="input-group-text"><strong>₹</strong></span>
+                            </div>
+                            <input type="number" class="form-control" aria-label="Salary"
+                                   name="salary" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><strong>Mobile Number</strong></span>
+                                <span class="input-group-text"><strong>+91</strong></span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Mobile Number"
+                                   name="mobile_number" pattern="[1-9][0-9]{9}" required placeholder="10-digits only">
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><strong>Join Date</strong></span>
+                            </div>
+                            <input type="date" maxlength="10" class="form-control" aria-label="Join Date"
+                                   name="join_date" required>
+                        </div>
+
+                        <button class="btn btn-info btn-rounded my-2 ml-0 waves-effect z-depth-0" type="submit">
+                            {% block submit-button-name %}{% endblock %}</button>
+                    </form>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+

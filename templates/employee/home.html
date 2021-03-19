@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    - Home
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'employee/css/datatables.min.css' %}"
+          xmlns="http://www.w3.org/1999/html">
+{% endblock %}
+
+{% block page-heading %}
+    Employees
+{% endblock %}
+
+{% block content %}
+    <div id="alert-message-div" style="display: none"></div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row justify-content-between mt-1 mb-3">
+                <div class="col">
+                    <button class="btn btn-sm btn-info mr-2"
+                            data-toggle="modal" data-target="#addEmployeeModalForm"><i class="fas fa-plus mr-2"></i>
+                        Add Employee
+                    </button>
+                    <button class="btn btn-sm btn-info"
+                            data-toggle="modal" data-target="#addDepartmentModalForm"><i class="fas fa-plus mr-2"></i>
+                        Add Department
+                    </button>
+                </div>
+                <div class="col-auto my-auto">
+                    <div class="custom-control custom-switch float-right mr-1">
+                        <input type="checkbox" class="custom-control-input" id="toggle-advance-search-button">
+                        <label class="custom-control-label font-weight-bold" for="toggle-advance-search-button">
+                            Advance Filters
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <table id="employees-datatable" class="table nowrap text-center custom-datatable" style="width:100%">
+                <thead>
+                <tr style="background: #e2e6ea">
+                    <th>Emp Id</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Designation</th>
+                    <th>Salary (₹)</th>
+                    <th>Mobile Number</th>
+                    <th>Join Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    {% include 'employee/add-employee-form-modal.html' %}
+    {% include 'employee/edit-employee-form-modal.html' %}
+
+    <div class="modal fade" id="deleteEmployeePrompt" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+
+        <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Are you sure?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Employee (<span class="text-danger font-weight-bold">ID - <span
+                        id="static-employee-id-delete"></span></span>) will be deleted.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" id="employee-delete-yes">Yes</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addDepartmentModalForm" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+
+        <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add New Department</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="add-department-form">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><strong>Department Name</strong></span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Department Name"
+                                   name="name" required>
+                        </div>
+                        <button class="btn btn-info btn-rounded my-2" type="submit">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript" src="{% static 'employee/js/datatables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'employee/js/jszip.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'employee/js/employee-handler.js' %}"></script>
+{% endblock %}

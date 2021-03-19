@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    - Employee Bulk Import
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block page-heading %}
+    Import Employees
+{% endblock %}
+
+{% block content %}
+
+    <div class="card my-5 py-2">
+        <form action="#" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <label for="formFileLg" class="form-label  px-3">Upload a CSV file to update employee data.</label>
+            <input class="form-control form-control-lg" id="formFileLg" type="file" name="employee_data_file"/>
+            <input class="float-right mt-2 mr-2" type="submit" value="Upload">
+        </form>
+    </div>
+    {% if message %}
+        <div class="alert {{ class }} text-center p-2" role="alert">
+            {{ message }}
+            {% if error_items %}
+                <p>Error: {{ error_items }}</p>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <div class="alert alert-info text-center p-2 font-weight-bold" role="alert">
+        Once you upload file it will process and refresh when done. DONT PRESS RELOAD ONCE YOU UPLOAD THE FILE!
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
